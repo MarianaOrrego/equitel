@@ -1,14 +1,13 @@
 .container-users {
   display        : flex;
   justify-content: center;
-  align-items    : center;
+  margin-top     : 15%;
+  margin-right   : 2%;
+  width          : 50vh;
 }
 
 .form-container-users {
-  max-width: 90%;
-  width    : 400px;
-  margin   : 0 auto;
-  padding  : 20px;
+  margin : 0 auto;
 }
 
 .input-group-users {
@@ -54,8 +53,10 @@
   overflow        : auto;
   background-color: white;
   color           : black;
-  width           : 350px;
+  width           : 80vh;
   margin          : 10px;
+  max-height      : 90vh;
+  overflow-y      : auto;
 }
 
 .user-table {
@@ -81,4 +82,13 @@
 
 .user-table tbody tr:hover {
   background-color: #ddd;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  margin-top      : 10px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
 }

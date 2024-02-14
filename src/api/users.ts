@@ -3,11 +3,11 @@ import { api } from "./base.api";
 const endpoint = "users";
 
 export const users = {
-  getAll: function () {
+  getAllUsers: function () {
     return api.get(endpoint);
   },
 
-  getById: function (id: number) {
+  getUserById: function (id: number) {
     return api.get(`${endpoint}/${id}`);
   },
 

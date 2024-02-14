@@ -1,46 +1,91 @@
 import { useEffect, useState } from "react";
 import "../styles/users.css";
 import { users } from "../../api/users";
+import { rol } from "../../api/rol";
 
 interface User {
   id: number;
   username: string;
+  password: string;
   rolId: number;
+}
+interface Rol {
+  id: number;
+  name: string;
 }
 
 const Users = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [roleId, setRoleId] = useState("");
   const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [allRoles, setAllRoles] = useState<Rol[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const usersResponse = await users.getAllUsers();
+        setAllUsers(usersResponse.data);
+        const rolesResponse = await rol.getAllRol();
+        setAllRoles(rolesResponse.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleEdit = (user: User) => {
+    setSelectedUser(user);
+    setUser(user.username);
+    setPassword(user.password);
+    setRoleId(user.rolId.toString());
+    setIsEditMode(true);
+  };
+
+  const handleAddOrUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      
-      await users.createUser({ username: user, password, rolId: parseInt(role) });
-      
-      const response = await users.getAll();
+      if (isEditMode && selectedUser) {
+        await users.updateUser(selectedUser.id, {
+          username: user,
+          password: password,
+          rolId: parseInt(roleId),
+        });
+        setIsEditMode(false);
+      } else {
+        await users.createUser({
+          username: user,
+          password,
+          rolId: parseInt(roleId),
+        });
+      }
+      const response = await users.getAllUsers();
       setAllUsers(response.data);
-
       setUser("");
       setPassword("");
-      setRole("");
+      setRoleId("");
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    users
-      .getAll()
-      .then((response) => {
-        setAllUsers(response.data);
-      })
-      .catch((error) => {
+  const handleDelete = async (userId: number) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que quieres eliminar este usuario?",
+    );
+    if (confirmDelete) {
+      try {
+        await users.deleteUser(userId);
+        const updatedUsers = allUsers.filter((user) => user.id !== userId);
+        setAllUsers(updatedUsers);
+      } catch (error) {
         console.error(error);
-      });
-  }, [allUsers]);
+      }
+    }
+  };
 
   return (
     <>
@@ -50,20 +95,33 @@ const Users = () => {
             <tr>
               <th>Usuario</th>
               <th>Rol</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {allUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.username}</td>
-                <td>{user.rolId}</td>
+                <td>{allRoles.find((role) => role.id === user.rolId)?.name}</td>
+                <td>
+                  <button className="button" onClick={() => handleEdit(user)}>
+                    Editar
+                  </button>
+                  <button
+                    className="button delete-button"
+                    onClick={() => handleDelete(user.id)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
       <div className="container-users">
-        <form className="form-container-users" onSubmit={handleSubmit}>
+        <form className="form-container-users" onSubmit={handleAddOrUpdate}>
           <div className="input-group-users">
             <label htmlFor="user">Usuario:</label>
             <input
@@ -81,24 +139,27 @@ const Users = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              required={!isEditMode}
             />
           </div>
           <div className="input-group">
-            <label htmlFor="role">Rol:</label>
+            <label htmlFor="role">Rol a desempeñar:</label>
             <select
               id="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
+              value={roleId}
+              onChange={(e) => setRoleId(e.target.value)}
               required
             >
               <option value="">Seleccionar Rol</option>
-              <option value="1">Administrador</option>
-              <option value="2">Vendedor</option>
+              {allRoles.map((rol) => (
+                <option key={rol.id} value={rol.id}>
+                  {rol.name}
+                </option>
+              ))}
             </select>
           </div>
           <button type="submit" className="button">
-            Agregar Usuario
+            {isEditMode ? "Guardar Cambios" : "Agregar Usuario"}
           </button>
         </form>
       </div>

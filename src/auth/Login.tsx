@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/login.css";
+import "../components/styles/login.css";
 // interface LoginProps {
 //   onLogin: (username: string, password: string) => void;
 // }

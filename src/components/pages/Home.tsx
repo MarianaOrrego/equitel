@@ -10,7 +10,8 @@ const Home = () => {
           <ul>
             <li>React</li>
             <li>PostgreSQL</li>
-            <li>Python</li>
+            <li>Node.js</li>
+            <li>Express</li>
           </ul>
           <p>
             El objetivo de este proyecto es crear un sistema que permita

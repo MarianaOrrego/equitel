@@ -1,14 +1,10 @@
-import Login from "./components/auth/Login";
+import Login from "./auth/Login";
 import { Navigation } from "./routes/Navigation";
 
 function App() {
-  const isLoggedIn = true; 
+  const isLoggedIn = true;
 
-  return (
-    <>
-      {isLoggedIn ? <Navigation /> : <Login />}
-    </>
-  );
+  return <>{isLoggedIn ? <Navigation /> : <Login />}</>;
 }
 
 export default App;

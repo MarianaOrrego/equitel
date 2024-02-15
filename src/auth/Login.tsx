@@ -10,12 +10,14 @@ const Login = ({ onLoginSuccess }: { onLoginSuccess: (user: any) => void }) => {
     e.preventDefault();
     try {
       const response = await login.findUser({ username, password });
+      console.log(response.data.user.id)
 
       if (response.status === 200) {
-        console.log("Inicio de sesión exitoso");
-        onLoginSuccess(response.data.user);
+        const user = response.data.user;
+        localStorage.setItem("userId", user.id);
+        onLoginSuccess(user);
       } else {
-        console.log("Inicio de sesión fallido");
+        console.error("Inicio de sesión fallido");
       }
     } catch (error) {
       console.error("Error en inicio de sesión:", error);

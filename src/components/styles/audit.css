@@ -1,0 +1,40 @@
+.container-audit {
+  display        : flex;
+  justify-content: center;
+  margin-top     : 5%;
+}
+
+.table-container-audit {
+  border          : 1px solid var(--border-color);
+  border-radius   : 5px;
+  overflow        : auto;
+  background-color: white;
+  color           : var(--text-color);
+  width           : 80%;
+  margin          : 10px;
+}
+
+.audit-table {
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+.audit-table th,
+.audit-table td {
+  padding      : 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.audit-table th {
+  background-color: var(--background-color);
+  font-weight     : bold;
+  text-align      : left;
+}
+
+.audit-table tbody tr:nth-child(even) {
+  background-color: var(--background-color);
+}
+
+.audit-table tbody tr:hover {
+  background-color: #ddd;
+}

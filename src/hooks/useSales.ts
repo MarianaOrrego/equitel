@@ -12,7 +12,9 @@ interface Product {
 export const useSales = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [quantityToSell, setQuantityToSell] = useState<number>(0);
+  const [quantityToSell, setQuantityToSell] = useState<{
+    [productId: number]: number;
+  }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,22 +31,29 @@ export const useSales = () => {
   const handleSell = async () => {
     if (
       selectedProduct &&
-      quantityToSell > 0 &&
-      quantityToSell <= selectedProduct.quantity
+      quantityToSell[selectedProduct.productId] &&
+      quantityToSell[selectedProduct.productId] > 0 &&
+      quantityToSell[selectedProduct.productId] <= selectedProduct.quantity
     ) {
+      const productId = selectedProduct.productId;
+      const quantity = quantityToSell[productId];
       try {
-        await products.sellProduct(selectedProduct.productId, quantityToSell);
+        await products.sellProduct(productId, quantity);
         alert(
-          `Venta realizada de ${quantityToSell} unidades de ${selectedProduct.productName}`,
+          `Venta realizada de ${quantity} unidades de ${selectedProduct.productName}`,
         );
         const updatedProducts = allProducts.map((product) =>
-          product.productId === selectedProduct.productId
-            ? { ...product, quantity: product.quantity - quantityToSell }
+          product.productId === productId
+            ? { ...product, quantity: product.quantity - quantity }
             : product,
         );
         setAllProducts(updatedProducts);
         setSelectedProduct(null);
-        setQuantityToSell(0);
+        setQuantityToSell((prevState) => {
+          const newState = { ...prevState };
+          delete newState[productId];
+          return newState;
+        });
       } catch (error) {
         console.error("Error al vender el producto:", error);
       }

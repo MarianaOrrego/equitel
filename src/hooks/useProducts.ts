@@ -9,6 +9,7 @@ interface Product {
   description: string;
   price: number;
   providerId: number;
+  userId: number;
 }
 
 interface Provider {
@@ -63,12 +64,16 @@ export const useProducts = () => {
   const handleAddOrUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const userId = localStorage.getItem("userId");
+      const parsedUserId = userId ? parseInt(userId) : 1;
+
       const productData = {
         productName,
         quantity,
         description,
         price,
         providerId,
+        userId: parsedUserId,
       };
       if (isEditMode && selectedProduct) {
         await products.updateProduct(selectedProduct.productId, productData);

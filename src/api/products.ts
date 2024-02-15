@@ -17,6 +17,7 @@ export const products = {
     description: string;
     price: number;
     providerId: number;
+    userId: number;
   }) {
     return api.post(endpoint, product);
   },
@@ -29,6 +30,7 @@ export const products = {
       description: string;
       price: number;
       providerId: number;
+      userId: number;
     },
   ) {
     return api.put(`${endpoint}/${productId}`, product);
@@ -39,6 +41,6 @@ export const products = {
   },
 
   sellProduct: function (productId: number, quantity: number) {
-    return api.post(`${endpoint}/sell/${productId}`, {productId, quantity });
+    return api.post(`${endpoint}/sell/${productId}`, { productId, quantity });
   },
 };

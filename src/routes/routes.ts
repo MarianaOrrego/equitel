@@ -1,3 +1,4 @@
+import Audit from "../components/pages/Audit";
 import Home from "../components/pages/Home";
 import Products from "../components/pages/Products";
 import Provider from "../components/pages/Provider";
@@ -43,5 +44,11 @@ export const routes: Route[] = [
     to: "/sales",
     Component: Sales,
     name: "Ventas",
+  },
+  {
+    path: "/audit/*",
+    to: "/audit",
+    Component: Audit,
+    name: "Auditoría",
   }
 ];

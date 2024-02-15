@@ -34,8 +34,13 @@ const Sales = () => {
                 <td>
                   <input
                     type="number"
-                    value={quantityToSell}
-                    onChange={(e) => setQuantityToSell(Number(e.target.value))}
+                    value={quantityToSell[product.productId] || ""}
+                    onChange={(e) =>
+                      setQuantityToSell((prevState) => ({
+                        ...prevState,
+                        [product.productId]: Number(e.target.value),
+                      }))
+                    }
                     min="0"
                     max={product.quantity}
                   />
@@ -57,7 +62,9 @@ const Sales = () => {
         <div className="product-details">
           <h3>Detalles del Producto Seleccionado</h3>
           <p>Producto: {selectedProduct.productName}</p>
-          <p>Cantidad a Vender: {quantityToSell}</p>
+          <p>
+            Cantidad a Vender: {quantityToSell[selectedProduct.productId] || 0}
+          </p>
           <button onClick={handleSell} className="button-sales">
             Confirmar Venta
           </button>

@@ -1,3 +1,13 @@
+:root {
+  --primary-color      : #007bff;
+  --primary-hover-color: #0056b3;
+  --danger-color       : #dc3545;
+  --danger-hover-color : #c82333;
+  --border-color       : #ccc;
+  --background-color   : #f2f2f2;
+  --text-color         : #000;
+}
+
 .container-users {
   display        : flex;
   justify-content: center;
@@ -7,7 +17,7 @@
 }
 
 .form-container-users {
-  margin : 0 auto;
+  margin: 0 auto;
 }
 
 .input-group-users {
@@ -23,14 +33,14 @@
 .input-group-users select {
   width        : 100%;
   padding      : 10px;
-  border       : 1px solid #ccc;
+  border       : 1px solid var(--border-color);
   border-radius: 5px;
 }
 
 .input-group-users input:focus,
 .input-group-users select:focus {
   outline     : none;
-  border-color: #007bff;
+  border-color: var(--primary-color);
 }
 
 .button {
@@ -38,21 +48,21 @@
   padding         : 10px;
   border          : none;
   border-radius   : 5px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color           : #fff;
   cursor          : pointer;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-hover-color);
 }
 
 .table-container {
-  border          : 1px solid #ccc;
+  border          : 1px solid var(--border-color);
   border-radius   : 5px;
   overflow        : auto;
   background-color: white;
-  color           : black;
+  color           : var(--text-color);
   width           : 80vh;
   margin          : 10px;
   max-height      : 90vh;
@@ -67,17 +77,17 @@
 .user-table th,
 .user-table td {
   padding      : 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .user-table th {
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
   font-weight     : bold;
   text-align      : left;
 }
 
 .user-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
 }
 
 .user-table tbody tr:hover {
@@ -85,10 +95,10 @@
 }
 
 .delete-button {
-  background-color: #dc3545;
+  background-color: var(--danger-color);
   margin-top      : 10px;
 }
 
 .delete-button:hover {
-  background-color: #c82333;
+  background-color: var(--danger-hover-color);
 }

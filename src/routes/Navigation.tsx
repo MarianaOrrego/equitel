@@ -9,7 +9,26 @@ import {
 import logo from "../logo.svg";
 import { routes } from "./routes";
 
-export const Navigation = () => {
+export const Navigation = ({
+  user,
+  onLogout,
+}: {
+  user: any;
+  onLogout: () => void;
+}) => {
+  const handleLogout = () => {
+    onLogout();
+  };
+
+  const allowedRoutes = routes.filter((route) => {
+    if (user.rolId === 1) {
+      return true;
+    } else if (user.rolId === 2) {
+      return route.name === "Inicio" || route.name === "Ventas";
+    }
+    return false;
+  });
+
   return (
     <Suspense fallback={<span>Loading ...</span>}>
       <BrowserRouter>
@@ -17,7 +36,7 @@ export const Navigation = () => {
           <nav>
             <img src={logo} alt="React Logo" />
             <ul>
-              {routes.map(({ to, name }) => (
+              {allowedRoutes.map(({ to, name }) => (
                 <li key={to}>
                   <NavLink
                     to={to}
@@ -28,7 +47,7 @@ export const Navigation = () => {
                 </li>
               ))}
             </ul>
-            <button>Cerrar sesión</button>
+            <button onClick={handleLogout}>Cerrar sesión</button>
           </nav>
 
           <Routes>

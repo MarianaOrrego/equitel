@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { login } from "../api/login";
 import "../components/styles/login.css";
-// interface LoginProps {
-//   onLogin: (username: string, password: string) => void;
-// }
 
-const Login = () => {
+const Login = ({ onLoginSuccess }: { onLoginSuccess: (user: any) => void }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    try {
+      const response = await login.findUser({ username, password });
+
+      if (response.status === 200) {
+        console.log("Inicio de sesión exitoso");
+        onLoginSuccess(response.data.user);
+      } else {
+        console.log("Inicio de sesión fallido");
+      }
+    } catch (error) {
+      console.error("Error en inicio de sesión:", error);
+    }
+  };
+
   return (
     <div className="container">
-      <form className="form-container">
+      <form className="form-container" onSubmit={handleSubmit}>
         <div className="input-group">
           <input
             type="text"

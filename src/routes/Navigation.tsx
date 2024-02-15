@@ -5,6 +5,7 @@ import {
   Navigate,
   Route,
   Routes,
+  useNavigate,
 } from "react-router-dom";
 import logo from "../logo.svg";
 import { routes } from "./routes";
@@ -16,8 +17,12 @@ export const Navigation = ({
   user: any;
   onLogout: () => void;
 }) => {
+
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     onLogout();
+    navigate("/login")
   };
 
   const allowedRoutes = routes.filter((route) => {
@@ -31,7 +36,6 @@ export const Navigation = ({
 
   return (
     <Suspense fallback={<span>Loading ...</span>}>
-      <BrowserRouter>
         <div className="main-layout">
           <nav>
             <img src={logo} alt="React Logo" />
@@ -58,7 +62,6 @@ export const Navigation = ({
             <Route path="*" element={<Navigate to={routes[0].to} replace />} />
           </Routes>
         </div>
-      </BrowserRouter>
     </Suspense>
   );
 };

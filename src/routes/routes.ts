@@ -1,7 +1,7 @@
 import Home from "../components/pages/Home";
 import Products from "../components/pages/Products";
+import Provider from "../components/pages/Provider";
 import Sales from "../components/pages/Sales";
-import Stock from "../components/pages/Stock";
 import Users from "../components/pages/Users";
 
 type JSXComponent = () => JSX.Element;
@@ -30,13 +30,13 @@ export const routes: Route[] = [
     path: "/products/*",
     to: "/products",
     Component: Products,
-    name: "Productos",
+    name: "Inventario",
   },
   {
-    path: "/stock/*",
-    to: "/stock",
-    Component: Stock,
-    name: "Inventario",
+    path: "/provider/*",
+    to: "/provider",
+    Component: Provider,
+    name: "Proveedores",
   },
   {
     path: "/sales/*",

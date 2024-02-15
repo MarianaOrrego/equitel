@@ -1,0 +1,94 @@
+.container-providers {
+  display        : flex;
+  justify-content: center;
+  margin-top     : 15%;
+  margin-right   : 2%;
+  width          : 50vh;
+}
+
+.form-container-providers {
+  margin : 0 auto;
+}
+
+.input-group-providers {
+  margin-bottom: 15px;
+}
+
+.input-group-providers label {
+  display      : block;
+  margin-bottom: 5px;
+}
+
+.input-group-providers input,
+.input-group-providers select {
+  width        : 100%;
+  padding      : 10px;
+  border       : 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group-providers input:focus,
+.input-group-providers select:focus {
+  outline     : none;
+  border-color: #007bff;
+}
+
+.button {
+  width           : 100%;
+  padding         : 10px;
+  border          : none;
+  border-radius   : 5px;
+  background-color: #007bff;
+  color           : #fff;
+  cursor          : pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.table-container {
+  border          : 1px solid #ccc;
+  border-radius   : 5px;
+  overflow        : auto;
+  background-color: white;
+  color           : black;
+  width           : 80vh;
+  margin          : 10px;
+  max-height      : 90vh;
+  overflow-y      : auto;
+}
+
+.provider-table {
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+.provider-table th,
+.provider-table td {
+  padding      : 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.provider-table th {
+  background-color: #f2f2f2;
+  font-weight     : bold;
+  text-align      : left;
+}
+
+.provider-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.provider-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  margin-top      : 10px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}

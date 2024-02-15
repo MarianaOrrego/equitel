@@ -1,5 +1,5 @@
 :root {
-  --text-color: #fff;
+  --text-color-home: #fff;
 }
 
 .container-home {
@@ -10,12 +10,12 @@
 
 .title {
   font-size    : 2.5rem;
-  color        : var(--text-color);
+  color        : var(--text-color-home);
   margin-bottom: 20px;
   text-align   : center;
 }
 
 .description {
   font-size: 1.1rem;
-  color    : var(--text-color);
+  color    : var(--text-color-home);
 }

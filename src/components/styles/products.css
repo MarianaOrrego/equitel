@@ -1,12 +1,4 @@
-:root {
-  --primary-color      : #007bff;
-  --primary-hover-color: #0056b3;
-  --danger-color       : #dc3545;
-  --danger-hover-color : #c82333;
-  --border-color       : #ccc;
-  --background-color   : #f2f2f2;
-  --text-color         : #000;
-}
+@import url('variables.css');
 
 .container-products {
   display        : flex;

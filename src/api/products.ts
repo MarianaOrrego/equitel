@@ -37,4 +37,8 @@ export const products = {
   deleteProduct: function (productId: number) {
     return api.delete(`${endpoint}/${productId}`);
   },
+
+  sellProduct: function (productId: number, quantity: number) {
+    return api.post(`${endpoint}/sell/${productId}`, {productId, quantity });
+  },
 };

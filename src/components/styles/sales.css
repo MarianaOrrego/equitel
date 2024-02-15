@@ -1,0 +1,110 @@
+:root {
+  --color-primary      : #007bff;
+  --color-primary-hover: #0056b3;
+  --color-danger       : #dc3545;
+  --color-danger-hover : #c82333;
+  --color-background   : #f2f2f2;
+  --color-border       : #ccc;
+  --color-text         : #000;
+}
+
+.container-sales {
+  display              : grid;
+  grid-template-columns: 1fr 1fr;
+  gap                  : 20px;
+}
+
+.table-container {
+  width: 100%;
+}
+
+.product-details {
+  width: 100%;
+}
+
+.form-container-sales {
+  margin: 0 auto;
+}
+
+.input-group-sales {
+  margin-bottom: 15px;
+}
+
+.input-group-sales label {
+  display      : block;
+  margin-bottom: 5px;
+}
+
+.input-group-sales input,
+.input-group-sales select {
+  width        : 100%;
+  padding      : 10px;
+  border       : 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+.input-group-sales input:focus,
+.input-group-sales select:focus {
+  outline     : none;
+  border-color: var(--color-primary);
+}
+
+.button-sales {
+  width           : 90%;
+  padding         : 10px;
+  border          : none;
+  border-radius   : 5px;
+  background-color: var(--color-primary);
+  color           : #fff;
+  cursor          : pointer;
+}
+
+.button-sales:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.table-container-sales {
+  border          : 1px solid var(--color-border);
+  border-radius   : 5px;
+  overflow        : auto;
+  background-color: white;
+  color           : var(--color-text);
+  width           : 80vh;
+  margin          : 10px;
+  max-height      : 90vh;
+  overflow-y      : auto;
+}
+
+.sales-table {
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+.sales-table th,
+.sales-table td {
+  padding      : 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sales-table th {
+  background-color: var(--color-background);
+  font-weight     : bold;
+  text-align      : left;
+}
+
+.sales-table tbody tr:nth-child(even) {
+  background-color: var(--color-background);
+}
+
+.sales-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.delete-button-sales {
+  background-color: var(--color-danger);
+  margin-top      : 10px;
+}
+
+.delete-button-sales:hover {
+  background-color: var(--color-danger-hover);
+}
